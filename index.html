@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Арканоид</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="mainMenu" class="game-menu">
+            <h1>Арканоид</h1>
+            <div class="menu-buttons">
+                <button id="startGame">Начать игру</button>
+                <button id="settings">Настройки</button>
+                <button id="tutorial">Обучение</button>
+                <button id="stats">Статистика</button>
+            </div>
+            <div class="player-name">
+                <input type="text" id="playerName" placeholder="Введите имя" maxlength="20">
+                <div id="nameError" class="error"></div>
+            </div>
+        </div>
+
+        <div id="settingsMenu" class="settings-menu hidden">
+            <h2>Настройки</h2>
+            <div class="setting-option">
+                <label for="difficulty">Уровень сложности:</label>
+                <select id="difficulty">
+                    <option value="easy">Легкий</option>
+                    <option value="medium" selected>Средний</option>
+                    <option value="hard">Сложный</option>
+                </select>
+            </div>
+            <div class="setting-option">
+                <label for="soundVolume">Громкость звука:</label>
+                <input type="range" id="soundVolume" min="0" max="100" value="50">
+            </div>
+            <button id="saveSettings">Сохранить</button>
+            <button id="backToMenu">Назад в меню</button>
+        </div>
+
+        <div id="tutorialMenu" class="tutorial-menu hidden">
+            <h2>Обучение</h2>
+            <div class="tutorial-content">
+                <p>Используйте мышь или клавиши ← → для перемещения платформы.</p>
+                <p>Отбивайте шарик, чтобы разрушать блоки.</p>
+                <p>Не дайте шарику упасть вниз!</p>
+                <p><strong>Бонусы:</strong> Разрушайте блоки, чтобы получить бонусы. Поймайте падающие:</p>
+                <ul style="text-align: left; margin-left: 20px;">
+                    <li><strong>Extend (зеленый):</strong> Увеличивает платформу на 10 сек.</li>
+                    <li><strong>Shrink (красный):</strong> Уменьшает платформу на 10 сек.</li>
+                    <li><strong>Multiball (желтый):</strong> Добавляет еще один шарик на 15 сек.</li>
+                    <li><strong>Slow (синий):</strong> Замедляет шарик на 8 сек.</li>
+                    <li><strong>Fast (фиолетовый):</strong> Ускоряет шарик на 8 сек.</li>
+                    <li><strong>Extra Life (оранжевый):</strong> Дает +1 жизнь.</li>
+                </ul>
+                <p>Пасхалка: найдите секретные очки (50, 100, 200) для сюрприза!</p>
+            </div>
+            <button id="tutorialBack">Назад</button>
+        </div>
+
+        <div id="statsMenu" class="stats-menu hidden">
+            <h2>Статистика</h2>
+            <div id="statsContent" class="stats-window"></div>
+            <div class="menu-buttons">
+                <button id="clearStats">Очистить статистику</button>
+                <button id="statsBack">Назад</button>
+            </div>
+        </div>
+
+        <div id="gameUI" class="game-ui hidden">
+            <div class="score-display">
+                <span>Уровень: <span id="currentLevel">1</span></span>
+                <span>Очки: <span id="currentScore">0</span></span>
+                <span>Время: <span id="gameTimer">00:00</span></span>
+            </div>
+            <button id="pauseGame">Пауза</button>
+        </div>
+
+        <div id="pauseMenu" class="pause-menu hidden">
+            <h2>Пауза</h2>
+            <button id="resumeGame">Продолжить</button>
+            <button id="exitToMenu">Выйти в меню</button>
+        </div>
+
+        <div id="levelComplete" class="level-complete hidden">
+            <h2>Уровень пройден!</h2>
+            <p>Очки: <span id="levelScore">0</span></p>
+            <p>Время: <span id="levelTime">00:00</span></p>
+            <button id="nextLevel">Следующий уровень</button>
+        </div>
+
+        <div id="gameOver" class="game-over hidden">
+            <h2>Игра окончена</h2>
+            <p>Ваш результат: <span id="finalScore">0</span> очков</p>
+            <button id="restartGame">Играть снова</button>
+            <button id="gameOverToMenu">В меню</button>
+            <img id="gameOverGif" class="hidden" src="" alt="Random GIF">
+        </div>
+
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <script src="game.js"></script>
+
+</body>
+</html>
